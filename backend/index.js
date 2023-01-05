@@ -8,7 +8,8 @@ env.config();
 app.use(cors());
 app.use(express.json());
 
-const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.auydqp0.mongodb.net/?retryWrites=true&w=majority`;
+const clipRoute = require('./route/clipBoard');
+const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.auydqp0.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
 
 const connectionParams={
     useNewUrlParser: true,
@@ -24,10 +25,12 @@ mongoose.connect(url,connectionParams)
     })
 
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}!`);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
+app.use('/api', clipRoute);
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
