@@ -10,7 +10,7 @@ app.use(express.json());
 
 const clipRoute = require('./route/clipBoard');
 const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.auydqp0.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
-
+// console.log(process.env)
 const connectionParams={
     useNewUrlParser: true,
     useCreateIndex: true,
